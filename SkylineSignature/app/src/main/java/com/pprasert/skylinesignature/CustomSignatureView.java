@@ -5,19 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pprasert on 1/16/2017.
  */
 
-public class CustomView  extends View {
+public class CustomSignatureView  extends View {
     // setup initial color
     private final int paintColor = Color.BLACK;
     // defines paint and canvas
@@ -25,7 +21,7 @@ public class CustomView  extends View {
     // stores next circle
     private Path path = new Path();
 
-    public CustomView(Context context, AttributeSet attrs) {
+    public CustomSignatureView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setFocusable(true);
         setFocusableInTouchMode(true);

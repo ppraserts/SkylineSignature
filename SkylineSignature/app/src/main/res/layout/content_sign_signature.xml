@@ -13,7 +13,7 @@
     <view
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.pprasert.skylinesignature.CustomView"
+        class="com.pprasert.skylinesignature.CustomSignatureView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/view" />
