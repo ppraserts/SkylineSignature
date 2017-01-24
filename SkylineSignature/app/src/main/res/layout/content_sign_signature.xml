@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,14 +11,60 @@
     tools:showIn="@layout/activity_sign_signature">
 
 
-    <view
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.pprasert.skylinesignature.CustomSignatureView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/view" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.pprasert.skylinesignature.SignSignatureActivity"
+    tools:showIn="@layout/activity_sign_signature">
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         class="com.pprasert.skylinesignature.CustomSignatureView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/view" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="--------------------------------"
+        android:id="@+id/tvYourSignature"
+        android:textSize="20sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="Date Time"
+        android:id="@+id/tvPlayTime"
+        android:textSize="20sp" />
 
-</RelativeLayout>
+</LinearLayout>

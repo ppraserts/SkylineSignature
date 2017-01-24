@@ -11,13 +11,6 @@
         app:showAsAction="ifRoom"></item>
 
     <item
-        android:id="@+id/SaveAgreementSignature"
-        android:orderInCategory="200"
-        android:title="Save Agreement Signature"
-        android:icon="@android:drawable/ic_menu_save"
-        app:showAsAction="ifRoom"></item>
-
-    <item
         android:id="@+id/action_new_item"
         android:orderInCategory="300"
         android:title="New Item"

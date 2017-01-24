@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Skyline Signature</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragments</string>
     <string name="title_activity_sign_signature">Sign Signature</string>
+    <string name="msg_saveImageSuccess">Image Saved to SD Card</string>
 </resources>

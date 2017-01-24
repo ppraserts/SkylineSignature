@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 0);
             return true;
         }
-        else if (id == R.id.SaveAgreementSignature) {
-            return true;
-        }
         else if (id == R.id.action_new_item) {
             return true;
         }
