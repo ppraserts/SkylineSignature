@@ -51,8 +51,10 @@ public class SignSignatureActivity extends AppCompatActivity {
                         R.drawable.th);
 
                 Bitmap signature = getBitmapFromView(viewPager);
-                //signature = scaleDown(signature, signature.getWidth() - 200 , true);
 
+                // TODO: 1/25/2017 set Width and Hi 
+//                signature.setWidth(icon.getWidth());
+                //signature = scaleDown(signature, signature.getWidth() - 200 , true);
 
                 ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
                 bitmapList.add(icon);
@@ -118,9 +120,11 @@ public class SignSignatureActivity extends AppCompatActivity {
         Canvas canvas = new Canvas(temp);
         int top = 0;
         for (int i = 0; i < bitmap.size(); i++) {
-            Log.d("HTML", "Combine: "+i+"/"+bitmap.size()+1);
+            Log.d("HTML", "Combine: "+i+"/"+bitmap.size());
 
-            top = (i == 0 ? 0 : top+bitmap.get(i).getHeight());
+            int hi = bitmap.get(0).getHeight()/3;
+
+            top = (i == 0 ? 0 : top+bitmap.get(i).getHeight() - hi);
             canvas.drawBitmap(bitmap.get(i), 0f, top, null);
         }
         return temp;

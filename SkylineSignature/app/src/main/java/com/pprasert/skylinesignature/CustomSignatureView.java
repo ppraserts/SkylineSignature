@@ -15,7 +15,7 @@ import android.view.View;
 
 public class CustomSignatureView  extends View {
     // setup initial color
-    private final int paintColor = Color.BLACK;
+    private final int paintColor = Color.BLUE;
     // defines paint and canvas
     private Paint drawPaint;
     // stores next circle
