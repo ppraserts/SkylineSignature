@@ -47,7 +47,7 @@ public class AgreementFragment extends Fragment {
         else if(this.position == 1){
             imgView.setImageResource(R.drawable.en);
         }
-        else {
+        else if(this.position == 2){
             imgView.setImageResource(R.drawable.cn);
         }
     }

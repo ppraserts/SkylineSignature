@@ -44,17 +44,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
+        android:layout_weight="0.8"
+        android:gravity="bottom|center"
         android:padding="10dp"
-        android:text="Please Sign Below:"
+        android:text="Please Sign Below"
         android:id="@+id/tvPleaseSignBellow"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <view
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="3.2"
         class="com.pprasert.skylinesignature.CustomSignatureView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:gravity="center"
+        android:gravity="top|center"
         android:text="Date Time"
         android:id="@+id/tvPlayTime"
         android:textSize="20sp" />

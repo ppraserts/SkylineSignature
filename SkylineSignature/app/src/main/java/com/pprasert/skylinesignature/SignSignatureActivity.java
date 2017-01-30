@@ -1,15 +1,13 @@
 package com.pprasert.skylinesignature;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +32,7 @@ public class SignSignatureActivity extends AppCompatActivity {
         tvPlayTime.setText(mydate);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,20 +45,17 @@ public class SignSignatureActivity extends AppCompatActivity {
 
                 View viewPager = findViewById(R.id.signView);
 
-                //bitmap = getBitmapFromView(viewPager);
-                Bitmap icon = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.th);
+                Bitmap agreement = getAgreementLang();
 
-                Bitmap signature = getBitmapFromView(viewPager);
+                Bitmap signature = Helper.getBitmapFromView(viewPager);
 
-                // TODO: 1/25/2017 set Width and Hi 
-//                signature.setWidth(icon.getWidth());
-                //signature = scaleDown(signature, signature.getWidth() - 200 , true);
+                // TODO: 1/25/2017 set Width and Hi
+                signature = Bitmap.createScaledBitmap(signature, agreement.getWidth(), signature.getHeight() - 55, true);
 
                 ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
-                bitmapList.add(icon);
+                bitmapList.add(agreement);
                 bitmapList.add(signature);
-                bitmap = combineImages(bitmapList);
+                bitmap =  Helper.combineImages(bitmapList);
 
                 File filepath = Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES);
@@ -88,58 +84,20 @@ public class SignSignatureActivity extends AppCompatActivity {
 
     }
 
-    public static Bitmap getBitmapFromView(View view) {
-        //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
-        //Bind a canvas to it
-        Canvas canvas = new Canvas(returnedBitmap);
-        //Get the view's background
-        Drawable bgDrawable =view.getBackground();
-        if (bgDrawable!=null)
-            //has background drawable, then draw it on the canvas
-            bgDrawable.draw(canvas);
-        else
-            //does not have background drawable, then draw white background on the canvas
-            canvas.drawColor(Color.WHITE);
-        // draw the view on the canvas
-        view.draw(canvas);
-        //return the bitmap
-        return returnedBitmap;
+    public Bitmap getAgreementLang()
+    {
+        int position = Helper.currentFragementPosition;
+        if(position == 0)
+            return BitmapFactory.decodeResource(getResources(),
+                    R.drawable.th);
+        else if(position == 1)
+            return BitmapFactory.decodeResource(getResources(),
+                    R.drawable.en);
+        else if(position == 2)
+            return BitmapFactory.decodeResource(getResources(),
+                    R.drawable.cn);
+
+        return null;
     }
 
-    private static Bitmap combineImages(ArrayList<Bitmap> bitmap) {
-        int w = 0, h = 0;
-        for (int i = 0; i < bitmap.size(); i++) {
-            if (i < bitmap.size() - 1) {
-                w = bitmap.get(i).getWidth() > bitmap.get(i + 1).getWidth() ? bitmap.get(i).getWidth() : bitmap.get(i + 1).getWidth();
-            }
-            h += bitmap.get(i).getHeight();
-        }
-
-        Bitmap temp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(temp);
-        int top = 0;
-        for (int i = 0; i < bitmap.size(); i++) {
-            Log.d("HTML", "Combine: "+i+"/"+bitmap.size());
-
-            int hi = bitmap.get(0).getHeight()/3;
-
-            top = (i == 0 ? 0 : top+bitmap.get(i).getHeight() - hi);
-            canvas.drawBitmap(bitmap.get(i), 0f, top, null);
-        }
-        return temp;
-    }
-
-    public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
-                                  boolean filter) {
-        float ratio = Math.min(
-                (float) maxImageSize / realImage.getWidth(),
-                (float) maxImageSize / realImage.getHeight());
-        int width = Math.round((float) ratio * realImage.getWidth());
-        int height = Math.round((float) ratio * realImage.getHeight());
-
-        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
-                height, filter);
-        return newBitmap;
-    }
 }

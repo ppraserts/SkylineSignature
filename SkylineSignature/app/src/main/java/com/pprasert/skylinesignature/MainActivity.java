@@ -1,17 +1,13 @@
 package com.pprasert.skylinesignature;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -75,52 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.Signature) {
+
+            //Fragment f = mSectionsPagerAdapter.getItem(mViewPager.getCurrentItem());
+            Helper.currentFragementPosition = mViewPager.getCurrentItem();
             Intent intent = new Intent(MainActivity.this, SignSignatureActivity.class);
             startActivityForResult(intent, 0);
             return true;
         }
-        else if (id == R.id.action_new_item) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            //return PlaceholderFrๅagment.newInstance(position + 1);
-            return AgreementFragment.initial(position);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Thailand";
-                case 1:
-                    return "English";
-                case 2:
-                    return "China";
-            }
-            return null;
-        }
     }
 }
