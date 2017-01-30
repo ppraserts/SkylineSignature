@@ -1,81 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_sign_signature"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.pprasert.skylinesignature.SignSignatureActivity"
-    tools:showIn="@layout/activity_sign_signature">
+    tools:showIn="@layout/activity_sign_signature"
+    >
 
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:id="@+id/rlWaterMark"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent">
 
-        <view
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/skylinelogo_white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvPleaseSignBellow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:gravity="bottom|center"
+            android:padding="10dp"
+            android:text="Please Sign Below"
+            android:textSize="15sp" />
+
+        <view
+            android:id="@+id/view"
             class="com.pprasert.skylinesignature.CustomSignatureView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/view" />
+            android:layout_weight="3.2" />
+
+        <TextView
+            android:id="@+id/tvYourSignature"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="--------------------------------"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvPlayTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="top|center"
+            android:text="Date Time"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
-
 </RelativeLayout>
--->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    tools:context="com.pprasert.skylinesignature.SignSignatureActivity"
-    tools:showIn="@layout/activity_sign_signature">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:gravity="bottom|center"
-        android:padding="10dp"
-        android:text="Please Sign Below"
-        android:id="@+id/tvPleaseSignBellow"
-        android:textSize="15sp" />
-
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.2"
-        class="com.pprasert.skylinesignature.CustomSignatureView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/view" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:gravity="center"
-        android:text="--------------------------------"
-        android:id="@+id/tvYourSignature"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:gravity="top|center"
-        android:text="Date Time"
-        android:id="@+id/tvPlayTime"
-        android:textSize="20sp" />
-
-</LinearLayout>

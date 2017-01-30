@@ -3,13 +3,16 @@ package com.pprasert.skylinesignature;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +23,7 @@ public class Helper {
 
     public static  int currentFragementPosition;
 
-    public boolean isExternalStorageWritable() {
+    public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;
@@ -28,7 +31,7 @@ public class Helper {
         return false;
     }
 
-    public boolean isExternalStorageReadable() {
+    public static boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -87,5 +90,12 @@ public class Helper {
             }
         }
         return null;
+    }
+
+    public static String getSavedImageFileName()
+    {
+        Date date = new Date() ;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss") ;
+        return "SkyLine_" + dateFormat.format(date) + ".png";
     }
 }

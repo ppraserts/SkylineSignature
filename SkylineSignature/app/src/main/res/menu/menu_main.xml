@@ -9,5 +9,4 @@
         android:title="Sign Signature"
         android:icon="@android:drawable/ic_menu_edit"
         app:showAsAction="ifRoom"></item>
-
 </menu>

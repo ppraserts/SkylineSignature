@@ -1,6 +1,7 @@
 package com.pprasert.skylinesignature;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    static{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,15 +77,18 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.Signature) {
-
-            //Fragment f = mSectionsPagerAdapter.getItem(mViewPager.getCurrentItem());
             Helper.currentFragementPosition = mViewPager.getCurrentItem();
             Intent intent = new Intent(MainActivity.this, SignSignatureActivity.class);
             startActivityForResult(intent, 0);
             return true;
         }
 
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mViewPager.setCurrentItem(Helper.currentFragementPosition);
     }
 }

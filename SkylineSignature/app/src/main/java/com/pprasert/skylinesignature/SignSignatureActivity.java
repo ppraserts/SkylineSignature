@@ -3,6 +3,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +21,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SignSignatureActivity extends AppCompatActivity {
+    static{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +34,8 @@ public class SignSignatureActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView tvPlayTime = (TextView)findViewById(R.id.tvPlayTime);
-        String mydate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-        tvPlayTime.setText(mydate);
+        String myDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        tvPlayTime.setText(myDate);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -58,12 +64,12 @@ public class SignSignatureActivity extends AppCompatActivity {
                 bitmap =  Helper.combineImages(bitmapList);
 
                 File filepath = Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_PICTURES);
+                        Environment.DIRECTORY_PICTURES + "/Skyline/");
 
                 File dir = new File(filepath.getAbsolutePath());
                 dir.mkdirs();
 
-                File file = new File(dir, "myimage.png");
+                File file = new File(dir, Helper.getSavedImageFileName());
 
                 Toast.makeText(SignSignatureActivity.this, R.string.msg_saveImageSuccess, Toast.LENGTH_SHORT).show();
 
@@ -73,9 +79,11 @@ public class SignSignatureActivity extends AppCompatActivity {
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
                     output.flush();
                     output.close();
+                    Log.d("Save OK","Save OK");
 
                 }catch(Exception e) {
                     e.printStackTrace();
+                    Log.d("Save NO","Save NO");
                 }
 
             }
