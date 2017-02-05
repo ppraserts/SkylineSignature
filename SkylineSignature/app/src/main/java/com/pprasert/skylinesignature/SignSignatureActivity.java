@@ -96,16 +96,44 @@ public class SignSignatureActivity extends AppCompatActivity {
     {
         int position = Helper.currentFragementPosition;
         if(position == 0)
-            return BitmapFactory.decodeResource(getResources(),
-                    R.drawable.th);
+            return decodeImage(getDrawableID("th"));
         else if(position == 1)
-            return BitmapFactory.decodeResource(getResources(),
-                    R.drawable.en);
+            return decodeImage(getDrawableID("en"));
         else if(position == 2)
-            return BitmapFactory.decodeResource(getResources(),
-                    R.drawable.cn);
+            return decodeImage(getDrawableID("cn"));
 
         return null;
+    }
+
+    private int getDrawableID(String mDrawableName)
+    {
+        int resID = getResources().getIdentifier(mDrawableName , "drawable", this.getPackageName());
+        return  resID;
+    }
+
+    public Bitmap decodeImage(int resourceId) {
+        try {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeResource(getResources(), resourceId, o);
+            // The new size we want to scale to
+            final int REQUIRED_SIZE = 1280; // you are free to modify size as your requirement
+
+            // Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= REQUIRED_SIZE && o.outHeight / scale / 2 >= REQUIRED_SIZE)
+                scale *= 2;
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeResource(getResources(), resourceId, o2);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
 }

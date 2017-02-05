@@ -1,12 +1,17 @@
 package com.pprasert.skylinesignature;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 
 /**
@@ -37,19 +42,53 @@ public class AgreementFragment extends Fragment {
 
         ChooseFragmentViewToRender(imgView);
 
+        PhotoViewAttacher mAttacher = new PhotoViewAttacher(imgView);
+        mAttacher.update();
+
         return rootViewFragment;
     }
 
     private void ChooseFragmentViewToRender(ImageView imgView) {
         if(this.position == 0) {
-            imgView.setImageResource(R.drawable.th);
+            imgView.setImageBitmap(decodeImage(getDrawableID("th")));
         }
         else if(this.position == 1){
-            imgView.setImageResource(R.drawable.en);
+            imgView.setImageBitmap(decodeImage(getDrawableID("en")));
         }
         else if(this.position == 2){
-            imgView.setImageResource(R.drawable.cn);
+            imgView.setImageBitmap(decodeImage(getDrawableID("cn")));
         }
+    }
+
+    private int getDrawableID(String mDrawableName)
+    {
+        int resID = getResources().getIdentifier(mDrawableName , "drawable", getActivity().getPackageName());
+        return  resID;
+    }
+
+    public Bitmap decodeImage(int resourceId) {
+        try {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeResource(getResources(), resourceId, o);
+            // The new size we want to scale to
+            final int REQUIRED_SIZE = 1280; // you are free to modify size as your requirement
+
+            // Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= REQUIRED_SIZE && o.outHeight / scale / 2 >= REQUIRED_SIZE)
+                scale *= 2;
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeResource(getResources(), resourceId, o2);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
 }
