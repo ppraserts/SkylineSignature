@@ -63,8 +63,8 @@ public class SignSignatureActivity extends AppCompatActivity {
                 bitmapList.add(signature);
                 bitmap =  Helper.combineImages(bitmapList);
 
-                File filepath = Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_PICTURES + "/Skyline/");
+                String root = Environment.getExternalStorageDirectory().toString();
+                File filepath = new File(root + "/Skyline/");
 
                 File dir = new File(filepath.getAbsolutePath());
                 dir.mkdirs();
