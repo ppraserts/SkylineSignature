@@ -42,9 +42,10 @@ public class Helper {
 
     public static Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight() + 500,Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createScaledBitmap(returnedBitmap,view.getWidth(),view.getHeight() + view.getHeight(),false);
         //Bind a canvas to it
-        Canvas canvas = new Canvas(returnedBitmap);
+        Canvas canvas = new Canvas(bitmap);
         //Get the view's background
         Drawable bgDrawable =view.getBackground();
         if (bgDrawable!=null)
@@ -56,7 +57,7 @@ public class Helper {
         // draw the view on the canvas
         view.draw(canvas);
         //return the bitmap
-        return returnedBitmap;
+        return bitmap;
     }
 
     public static Bitmap combineImages(ArrayList<Bitmap> bitmap) {
@@ -74,7 +75,7 @@ public class Helper {
         for (int i = 0; i < bitmap.size(); i++) {
             Log.d("HTML", "Combine: "+i+"/"+bitmap.size());
 
-            int hi = bitmap.get(0).getHeight()/3;
+            int hi = bitmap.get(0).getHeight();
 
             top = (i == 0 ? 0 : top+bitmap.get(i).getHeight() - hi);
             canvas.drawBitmap(bitmap.get(i), 0f, top, null);
