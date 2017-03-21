@@ -42,8 +42,8 @@ public class Helper {
 
     public static Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight() + 500,Bitmap.Config.ARGB_8888);
-        Bitmap bitmap = Bitmap.createScaledBitmap(returnedBitmap,view.getWidth(),view.getHeight() + view.getHeight(),false);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createScaledBitmap(returnedBitmap,view.getWidth(),view.getHeight(),false);
         //Bind a canvas to it
         Canvas canvas = new Canvas(bitmap);
         //Get the view's background

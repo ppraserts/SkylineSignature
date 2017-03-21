@@ -56,7 +56,7 @@ public class SignSignatureActivity extends AppCompatActivity {
                 Bitmap signature = Helper.getBitmapFromView(viewPager);
 
                 // TODO: 1/25/2017 set Width and Hi
-                signature = Bitmap.createScaledBitmap(signature, agreement.getWidth(), agreement.getHeight() + agreement.getHeight()  , true);
+                signature = Bitmap.createScaledBitmap(signature, agreement.getWidth(), signature.getHeight() + agreement.getHeight()  , true);
 
                 ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
                 bitmapList.add(agreement);

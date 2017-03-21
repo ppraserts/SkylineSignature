@@ -50,13 +50,13 @@ public class AgreementFragment extends Fragment {
 
     private void ChooseFragmentViewToRender(ImageView imgView) {
         if(this.position == 0) {
-            imgView.setImageBitmap(decodeImage(getDrawableID("th")));
+            imgView.setImageResource(getDrawableID("th"));
         }
         else if(this.position == 1){
-            imgView.setImageBitmap(decodeImage(getDrawableID("en")));
+            imgView.setImageResource(getDrawableID("en"));
         }
         else if(this.position == 2){
-            imgView.setImageBitmap(decodeImage(getDrawableID("cn")));
+            imgView.setImageResource(getDrawableID("cn"));
         }
     }
 
