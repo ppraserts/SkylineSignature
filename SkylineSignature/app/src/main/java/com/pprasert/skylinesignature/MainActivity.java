@@ -1,5 +1,6 @@
 package com.pprasert.skylinesignature;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,9 +84,28 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.Signature) {
-            Helper.currentFragementPosition = mViewPager.getCurrentItem();
-            Intent intent = new Intent(MainActivity.this, SignSignatureActivity.class);
-            startActivityForResult(intent, 0);
+            Dexter.withActivity(this)
+                    .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(new PermissionListener() {
+                        @Override
+                        public void onPermissionGranted(PermissionGrantedResponse response) {
+                            Helper.currentFragementPosition = mViewPager.getCurrentItem();
+                            Intent intent = new Intent(MainActivity.this, SignSignatureActivity.class);
+                            startActivityForResult(intent, 0);
+
+                        }
+
+                        @Override
+                        public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+                        }
+                    })
+            .check();
             return true;
         }
 

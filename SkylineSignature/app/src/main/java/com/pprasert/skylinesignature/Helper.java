@@ -63,9 +63,7 @@ public class Helper {
     public static Bitmap combineImages(ArrayList<Bitmap> bitmap) {
         int w = 0, h = 0;
         for (int i = 0; i < bitmap.size(); i++) {
-            if (i < bitmap.size() - 1) {
-                w = bitmap.get(i).getWidth() > bitmap.get(i + 1).getWidth() ? bitmap.get(i).getWidth() : bitmap.get(i + 1).getWidth();
-            }
+            w = bitmap.get(i).getWidth() > w ? bitmap.get(i).getWidth() : w;
             h += bitmap.get(i).getHeight();
         }
 
@@ -75,9 +73,7 @@ public class Helper {
         for (int i = 0; i < bitmap.size(); i++) {
             Log.d("HTML", "Combine: "+i+"/"+bitmap.size());
 
-            int hi = bitmap.get(0).getHeight();
-
-            top = (i == 0 ? 0 : top+bitmap.get(i).getHeight() - hi);
+            top = (i == 0 ? 0 : h - bitmap.get(i).getHeight());
             canvas.drawBitmap(bitmap.get(i), 0f, top, null);
         }
         return temp;

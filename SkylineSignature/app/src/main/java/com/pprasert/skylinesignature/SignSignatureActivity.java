@@ -56,15 +56,16 @@ public class SignSignatureActivity extends AppCompatActivity {
                 Bitmap signature = Helper.getBitmapFromView(viewPager);
 
                 // TODO: 1/25/2017 set Width and Hi
-                signature = Bitmap.createScaledBitmap(signature, agreement.getWidth(), signature.getHeight() + agreement.getHeight()  , true);
+                signature = Bitmap.createScaledBitmap(signature, agreement.getWidth(), signature.getHeight(), true);
 
                 ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
                 bitmapList.add(agreement);
                 bitmapList.add(signature);
                 bitmap =  Helper.combineImages(bitmapList);
-
-                String root = Environment.getExternalStorageDirectory().toString();
-                File filepath = new File(root + "/Skyline/");
+                File[] diskArray = getExternalFilesDirs(Environment.DIRECTORY_PICTURES);
+                File sdCard = diskArray[diskArray.length-1];
+//                String root = Environment.getExternalStorageDirectory().toString();
+                File filepath = new File(sdCard, "Skyline/");
 
                 File dir = new File(filepath.getAbsolutePath());
                 dir.mkdirs();
