@@ -9,10 +9,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by pprasert on 1/16/2017.
- */
-
 public class CustomSignatureView  extends View {
     // setup initial color
     private final int paintColor = Color.BLUE;

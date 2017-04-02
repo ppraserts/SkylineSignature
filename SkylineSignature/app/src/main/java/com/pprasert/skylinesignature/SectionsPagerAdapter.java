@@ -20,9 +20,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        //return PlaceholderFrๅagment.newInstance(position + 1);
         return AgreementFragment.initial(position);
     }
 
@@ -37,11 +34,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return "Thailand";
+                return "Thai";
             case 1:
                 return "English";
             case 2:
-                return "China";
+                return "Chinese";
         }
         return null;
     }

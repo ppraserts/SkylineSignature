@@ -1,4 +1,5 @@
 package com.pprasert.skylinesignature;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +42,7 @@ public class SignSignatureActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+
                 // TODO Auto-generated method stub
 
                 Bitmap bitmap;
@@ -64,8 +63,8 @@ public class SignSignatureActivity extends AppCompatActivity {
                 bitmap =  Helper.combineImages(bitmapList);
                 File[] diskArray = getExternalFilesDirs(Environment.DIRECTORY_PICTURES);
                 File sdCard = diskArray[diskArray.length-1];
-//                String root = Environment.getExternalStorageDirectory().toString();
-                File filepath = new File(sdCard, "Skyline/");
+
+                File filepath = new File(sdCard, "Skyline/Round"+ Helper.currentRoundPosition +"/" );
 
                 File dir = new File(filepath.getAbsolutePath());
                 dir.mkdirs();

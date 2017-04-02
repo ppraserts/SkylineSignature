@@ -3,42 +3,18 @@ package com.pprasert.skylinesignature;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-/**
- * Created by pprasert on 1/25/2017 AD.
- */
 
 public class Helper {
 
     public static  int currentFragementPosition;
-
-    public static boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
-    }
+    public static  int currentRoundPosition;
 
     public static Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
@@ -77,16 +53,6 @@ public class Helper {
             canvas.drawBitmap(bitmap.get(i), 0f, top, null);
         }
         return temp;
-    }
-
-    public static Fragment getVisibleFragment(List<Fragment> fragments ){
-        if(fragments != null){
-            for(Fragment fragment : fragments){
-                if(fragment != null && fragment.isVisible())
-                    return fragment;
-            }
-        }
-        return null;
     }
 
     public static String getSavedImageFileName()

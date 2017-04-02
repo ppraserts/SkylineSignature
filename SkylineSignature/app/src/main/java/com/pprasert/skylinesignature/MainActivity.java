@@ -6,7 +6,6 @@ import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,19 +20,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     static{
@@ -71,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /*if (requestCode == RequestCodeSettingPage) {
-        }*/
     }
 
     @Override
@@ -89,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     .withListener(new PermissionListener() {
                         @Override
                         public void onPermissionGranted(PermissionGrantedResponse response) {
+
                             Helper.currentFragementPosition = mViewPager.getCurrentItem();
                             Intent intent = new Intent(MainActivity.this, SignSignatureActivity.class);
                             startActivityForResult(intent, 0);
@@ -106,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
             .check();
+            return true;
+        }
+        else if (id == R.id.Home) {
+            Intent mintent = new Intent(MainActivity.this, PlaytimeActivity.class);
+            startActivity(mintent);
             return true;
         }
 

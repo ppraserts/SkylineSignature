@@ -4,6 +4,13 @@
     tools:context="com.pprasert.skylinesignature.MainActivity">
 
     <item
+        android:id="@+id/Home"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:orderInCategory="100"
+        android:title="Choose Play Time"
+        app:showAsAction="always"></item>
+
+    <item
         android:id="@+id/Signature"
         android:icon="@android:drawable/ic_menu_edit"
         android:orderInCategory="100"
